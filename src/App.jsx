@@ -1,4 +1,6 @@
-import { CssBaseline } from "@mui/material";
+import { CssBaseline, GlobalStyles } from "@mui/material";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes";
 
 function App() {
   const globalStyles = {
@@ -11,6 +13,8 @@ function App() {
   return (
     <>
       <CssBaseline />
+      <GlobalStyles styles={globalStyles} />
+      <RouterProvider router={router} />
     </>
   );
 }
