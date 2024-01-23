@@ -5,6 +5,8 @@ import ToursData from "../components/common/ToursData";
 import Animate from "../components/common/Animate";
 import UserBookingCard from "../components/common/UserBookingCard";
 import TotalIncome from "../components/common/TotalIncome";
+import BookedData from "../components/common/BookedData";
+import StatisticData from "../components/common/StatisticData";
 
 const DashboardPage = () => {
   return (
@@ -35,8 +37,13 @@ const DashboardPage = () => {
             </Animate>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Animate type="fade" delay={2}>
-              <TotalIncome />
+            <Animate type="fade" delay={2} sx={{ height: "100%" }}>
+              <BookedData />
+            </Animate>
+          </Grid>
+          <Grid item xs={12}>
+            <Animate delay={2.5}>
+              <StatisticData />
             </Animate>
           </Grid>
         </Grid>
