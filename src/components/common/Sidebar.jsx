@@ -79,8 +79,7 @@ const investmentMenu = [
 const Sidebar = ({ sidebarWidth }) => {
   const activeState = "overview";
 
-  const container =
-    window !== undefined ? () => window.document.body : undefined;
+  // const container = window !== undefined ? () => window.document.body : undefined;
 
   const MenuItem = (props) => {
     return (
