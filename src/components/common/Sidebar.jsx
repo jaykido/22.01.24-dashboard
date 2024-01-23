@@ -16,6 +16,8 @@ import {
   colors,
   Typography,
   Drawer,
+  List,
+  Paper,
 } from "@mui/material";
 import Animate from "./Animate";
 import { images } from "../../assets";
@@ -68,9 +70,9 @@ const investmentMenu = [
     state: "financeadvice",
   },
   {
-    title: "Savings accoounts",
+    title: "Savings accounts",
     icon: <SavingsOutlinedIcon />,
-    state: "savingaccounnt",
+    state: "savingaccount",
   },
 ];
 
@@ -136,9 +138,76 @@ const Sidebar = ({ sidebarWidth }) => {
           <img src={images.logo} alt="logo" height={70} />
         </Animate>
       </Box>
+
       {/* Logo Here!! */}
 
-      <Animate></Animate>
+      <Animate sx={{ flexGrow: 1 }}>
+        <Paper
+          elevation={0}
+          squire
+          sx={{
+            borderTopRightRadius: "10px",
+            borderTopLeftRadius: "10px",
+            p: 2,
+            height: "100%",
+            boxShadow:
+              "rgba(145, 158, 171, 0.2) 0px 0px 2px 0px, rgba(145, 158, 171, 0.12) 0px 12px 24px -4px",
+          }}
+        >
+          {/* Menu Group First */}
+
+          <List>
+            {menu.map((item, index) => (
+              <MenuItem
+                key={index}
+                item={item}
+                isActive={item.state === activeState}
+              />
+            ))}
+          </List>
+          {/* Menu Group First */}
+
+          {/* Menu Group Second One */}
+
+          <List>
+            <ListItem>
+              <Typography fontWeight={600} mt={1} color={colors.grey[600]}>
+                Services
+              </Typography>
+            </ListItem>
+
+            {serviceMenu.map((item, index) => (
+              <MenuItem
+                key={index}
+                item={item}
+                isActive={item.state === activeState}
+              />
+            ))}
+          </List>
+
+          {/* Menu Group Second One */}
+
+          {/* Menu Group Third One */}
+
+          <List>
+            <ListItem>
+              <Typography fontWeight={600} mt={1} color={colors.grey[600]}>
+                Investment
+              </Typography>
+            </ListItem>
+
+            {investmentMenu.map((item, index) => (
+              <MenuItem
+                key={index}
+                item={item}
+                isActive={item.state === activeState}
+              />
+            ))}
+          </List>
+
+          {/* Menu Group Third One */}
+        </Paper>
+      </Animate>
     </Box>
   );
   return (
