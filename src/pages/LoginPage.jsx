@@ -2,22 +2,47 @@ import {
   Box,
   Button,
   Checkbox,
+  CircularProgress,
   FormControlLabel,
   FormGroup,
   Stack,
   TextField,
   Typography,
+  circularProgressClasses,
   colors,
 } from "@mui/material";
 import React, { useState } from "react";
 import { images } from "../assets";
 import { CheckBox } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Animate from "../components/common/Animate";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [onRequest, setOnRequest] = useState(false);
   const [loginProgress, setLoginProgress] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const onSignin = (e) => {
+    e.preventDefault();
+    setOnRequest(true);
+
+    const interval = setInterval(() => {
+      setLoginProgress((prev) => prev + 100 / 40);
+    }, 50);
+
+    setTimeout(() => {
+      clearInterval(interval);
+    }, 2000);
+
+    setTimeout(() => {
+      setIsLoggedIn(true);
+    }, 2100);
+
+    setTimeout(() => {
+      navigate("/dashboard");
+    }, 3300);
+  };
 
   return (
     <Box
@@ -69,7 +94,9 @@ const LoginPage = () => {
               p: 5,
             }}
           >
-            <img src={images.logo} alt="logo" height={90}></img>
+            <Animate type="fade" delay={0.5}>
+              <img src={images.logo} alt="logo" height={90}></img>
+            </Animate>
           </Box>
           {/* Logo Design */}
           {/* Form Design */}
@@ -85,39 +112,99 @@ const LoginPage = () => {
               justifyContent: "center",
             }}
           >
-            <Box component="form" maxWidth={400} width="100%">
-              <Stack spacing={3}>
-                <TextField label="username" fullWidth />
-                <TextField label="password" type="password" fullWidth />
-                <Button
-                  type="submit"
-                  size="large"
-                  variant="contained"
-                  color="success"
-                >
-                  Sign In
-                </Button>
-                <Stack
-                  direction="row"
-                  justifyContent="space-between"
-                  alignItems="center"
-                >
-                  <FormGroup>
-                    <FormControlLabel
-                      control={<Checkbox />}
-                      label="remember credentials"
-                    />
-                  </FormGroup>
-                  <Typography color="error" fontWeight="bold">
-                    <Link to="#"> Forgot your Password? </Link>
-                  </Typography>
+            <Animate type="fade" sx={{ maxWidth: 400, width: "100%" }}>
+              <Box
+                component="form"
+                maxWidth={400}
+                width="100%"
+                onSubmit={onSignin}
+              >
+                <Stack spacing={3}>
+                  <TextField label="username" fullWidth />
+                  <TextField label="password" type="password" fullWidth />
+                  <Button
+                    type="submit"
+                    size="large"
+                    variant="contained"
+                    color="success"
+                  >
+                    Sign In
+                  </Button>
+                  <Stack
+                    direction="row"
+                    justifyContent="space-between"
+                    alignItems="center"
+                  >
+                    <FormGroup>
+                      <FormControlLabel
+                        control={<Checkbox />}
+                        label="remember credentials"
+                      />
+                    </FormGroup>
+                    <Typography color="error" fontWeight="bold">
+                      <Link to="#"> Forgot your Password? </Link>
+                    </Typography>
+                  </Stack>
                 </Stack>
-              </Stack>
-            </Box>
+              </Box>
+            </Animate>
           </Box>
           {/* Form Design */}
 
           {/* Footer */}
+          <Box sx={{ textAlign: "center", p: 5, zIndex: 2 }}>
+            <Animate type="fade" delay={1}>
+              <Typography
+                display="inline"
+                fontWeight="bold"
+                sx={{ "& > a": { color: colors.red[900], ml: "5px" } }}
+              >
+                Create your Account -<Link to="#">Register Here</Link>
+              </Typography>
+            </Animate>
+          </Box>
+          {/* Footer */}
+
+          {/* Loading Box */}
+          {onRequest && (
+            <Stack
+              alignItems="center"
+              justifyContent="center"
+              sx={{
+                height: "100%",
+                width: "100%",
+                position: "absolute",
+                top: 0,
+                left: 0,
+                bgcolor: colors.common.white,
+                zIndex: 1000,
+              }}
+            >
+              <Box position="relative">
+                <CircularProgress
+                  variant="determinate"
+                  sx={{ color: colors.grey[200] }}
+                  size={100}
+                  value={100}
+                />
+                <CircularProgress
+                  variant="determinate"
+                  disableShrink
+                  value={loginProgress}
+                  size={100}
+                  sx={{
+                    [`& .${circularProgressClasses.circle}`]: {
+                      strokeLinecap: "round",
+                    },
+                    position: "absolute",
+                    left: 0,
+                    color: colors.green[600],
+                  }}
+                />
+              </Box>
+            </Stack>
+          )}
+          {/* Loading Box */}
         </Box>
       </Box>
 
