@@ -1,7 +1,7 @@
 import React from "react";
 import MPaper from "./MPaper";
 import { Box, Stack, Typography, colors } from "@mui/material";
-import { Bar } from "react-chartjs-2";
+// import { Bar } from "react-chartjs-2";
 
 const chartData = {
   labels: [
