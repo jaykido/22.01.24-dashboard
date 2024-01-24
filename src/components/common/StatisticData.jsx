@@ -37,27 +37,28 @@ const chartData = {
     },
   ],
 };
+// This is just a small Update.
+// const charOptions = {
+//   responsive: true,
+//   maintainAspectRatio: false,
+//   scales: {
+//     x: {
+//       grid: { display: false },
+//       stacked: true,
+//     },
+//     y: { stacked: true },
+//   },
+//   plugins: {
+//     legend: { display: false },
+//     title: { display: false },
+//   },
+//   elements: {
+//     bar: {
+//       borderRadius: 10,
+//     },
+//   },
+// };
 
-const charOptions = {
-  responsive: true,
-  maintainAspectRatio: false,
-  scales: {
-    x: {
-      grid: { display: false },
-      stacked: true,
-    },
-    y: { stacked: true },
-  },
-  plugins: {
-    legend: { display: false },
-    title: { display: false },
-  },
-  elements: {
-    bar: {
-      borderRadius: 10,
-    },
-  },
-};
 const StatisticData = () => {
   return (
     <MPaper title="Statistic">
